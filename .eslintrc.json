@@ -42,10 +42,6 @@
     "error",
     "always"
   ],
-    "strict": [
-    "error",
-    "global"
-  ],
     "brace-style": [
     "error",
     "1tbs",
@@ -212,8 +208,7 @@
     }
   ],
     "arrow-parens": [
-    "error",
-    "as-needed"
+    "error"
   ],
     "arrow-body-style": [
     "error",
