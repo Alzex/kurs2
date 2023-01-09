@@ -11,6 +11,10 @@ class Collection {
     return this.collection.findOne({ _id: id });
   }
 
+  create(data) {
+    return this.collection.insertOne(data);
+  }
+
   count() {
     return this.collection.countDocuments();
   }
