@@ -4,10 +4,16 @@ class Collection {
   }
 
   find(params = {}) {
-    return this.collection.find(params);
+    return this.collection.find(params).toArray();
   }
 
-  findOne(params = {}) {
+  findOneById(id) {
+    return this.collection.findOne({ _id: id });
+  }
 
+  count() {
+    return this.collection.countDocuments();
   }
 }
+
+module.exports = Collection;
