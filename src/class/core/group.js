@@ -11,11 +11,16 @@ class Group extends Entity {
   }
 
   async addUser(tgID) {
-    await this.members.push(tgID);
+    if(!this.members.indexOf(tgID)){
+       this.members.push(tgID);
+    return
+    }
+    return 
   }
 
   async deleteUser(tgID) {
-    await this.members.splice(this.members.indexOf(tgID), 1);
+    await  this.members.splice(this.members.indexOf(tgID), 1);
+     return 
   }
 
   async splitTheBill(price) {
