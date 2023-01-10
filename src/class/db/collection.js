@@ -1,7 +1,7 @@
 'use strict';
 
 class Collection {
-  constructor(name, db) {
+  constructor(db, name) {
     this.collection = db.collection(name);
   }
 

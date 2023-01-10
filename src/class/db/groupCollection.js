@@ -4,7 +4,7 @@ const Collection = require('./collection');
 
 class GroupCollection extends Collection {
   constructor(db, name = 'Groups Collection') {
-    super(name, db);
+    super(db, name);
   }
 
   getGroupMembers(groupId) {
