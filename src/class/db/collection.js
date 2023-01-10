@@ -14,11 +14,16 @@ class Collection {
   }
 
   create(data) {
-    return this.collection.insertOne(data);
+    return this.collection.insertOne({ _id: data.id, ...data });
   }
 
   count() {
     return this.collection.countDocuments();
+  }
+
+  ifFieldExist(field, value) {
+    return this.collection.findOne({ [field]: value })
+      .then((result) => (!!result));
   }
 }
 
