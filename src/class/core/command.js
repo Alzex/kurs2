@@ -6,7 +6,8 @@ class Command {
   }
 
   execute(ctx) {
-    const args = ctx.message.text.split(' ').shift();
+    const args = ctx.message.text.split(' ');
+    args.shift();
     return this.executor(ctx, ...args)
       .catch(
         (err) => {
