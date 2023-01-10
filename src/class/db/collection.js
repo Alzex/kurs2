@@ -17,6 +17,10 @@ class Collection {
     return this.collection.insertOne({ _id: data.id, ...data });
   }
 
+  delete(data) {
+    return this.collection.remove(data);
+  }
+
   count() {
     return this.collection.countDocuments();
   }
