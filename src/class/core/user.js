@@ -1,8 +1,13 @@
-'use strict';  
+'use strict';
 
-class User {
-    constructor(user) {
-        this.id = user.id;
-        this.
-    } 
+const Entity = require('./baseEntity');
+const Collection = require('./userCollection');
+const UserCollection = new Collection();
+
+class User extends Entity {
+  constructor(name, collection = UserCollection, type = 'User') {
+    super(name, collection, type);
+  }
 }
+
+module.exports =  User;
