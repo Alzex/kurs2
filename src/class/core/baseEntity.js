@@ -16,8 +16,8 @@ class Entity {
       const result = this.type + 'has been created.';
       return result;
     } else return 'This name is already taken.';
-
   }
+
   async delete(name) {
     const entity = await this.collection.ifFieldExist(name);
     if (entity) {
