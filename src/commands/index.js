@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   init(bot) {
     bot.command('start', async (ctx) => {

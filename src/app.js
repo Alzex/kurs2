@@ -1,3 +1,5 @@
+'use strict';
+
 const { Telegraf } = require('telegraf');
 const { token } = require('./config');
 const commands = require('./commands');
