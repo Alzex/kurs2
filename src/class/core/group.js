@@ -1,25 +1,14 @@
 'use strict';
 
-const groupCollection = require(../db/groupCollection.js);
+const Entity = require('./baseEntity');
+const Collection = require('./groupCollection');
+const GroupCollection = new Collection();
 
-class Group {
-    constructor(name){
-        this.name = name;
-        this.members = [];
-    }
-    groupCreate(name){
-        
-    }
-    groupDelete(name){
+class Group extends Entity {
+  constructor(name, collection = GroupCollection, type = 'Group') {
+    super(name, collection, type);
 
-    }
-    groupAddMember(tgID){
-
-    }
-    groupRemoveMember(tgID){
-
-    }
-    
+  }
 }
 
 module.exports = Group;
