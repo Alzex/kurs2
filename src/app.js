@@ -11,7 +11,7 @@ const db = new DBClient({ fromEnv: true });
 
 const client = new Telegraf(token);
 
-const bot = new Bot(client, commands, db);
+const bot = new Bot(client, commands, db.db);
 
 
 db.connect();

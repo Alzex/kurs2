@@ -1,0 +1,19 @@
+const Command = require('../class/core/command');
+const Group = require('../class/core/group');
+
+const createGroup = async (ctx, db, [name]) => {
+  if (!name) {
+    await ctx.sendMessage('You must specify a name for the group');
+    return;
+  }
+  const ownerId = ctx.message.from.id;
+  try {
+    const group = new Group(name, db, ownerId);
+    await group.save();
+  } catch (err) {
+    await ctx.sendMessage(err.message);
+  }
+
+};
+
+module.exports = new Command('create_group', 'Creates a group', createGroup);

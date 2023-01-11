@@ -29,6 +29,10 @@ class Collection {
     return this.collection.findOne({ [field]: value })
       .then((result) => (!!result));
   }
+
+  updateOne(id, data) {
+    return this.collection.update({ _id: id }, { $set: data });
+  }
 }
 
 module.exports = Collection;

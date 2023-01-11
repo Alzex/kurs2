@@ -3,7 +3,7 @@
 const Collection = require('./collection');
 
 class GroupCollection extends Collection {
-  constructor(db, name = 'Groups Collection') {
+  constructor(db, name = 'groups') {
     super(db, name);
   }
 

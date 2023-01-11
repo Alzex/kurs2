@@ -1,11 +1,14 @@
 'use strict';
 
+const Collection = require('../db/collection');
+
 class Entity {
 
-  constructor(name, collection, type) {
+  constructor(name, db, type) {
     this.name = name;
-    this.collection = collection;
+    this.collection = new Collection(db, type);
     this.type = type;
+    this.db = db;
   }
 
   async create(name) {

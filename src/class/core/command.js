@@ -8,10 +8,10 @@ class Command {
   execute(ctx) {
     const args = ctx.message.text.split(' ');
     args.shift();
-    return this.executor({ db: this.db, ...ctx }, ...args)
+    return this.executor(ctx, this.db, args)
       .catch(
         (err) => {
-          console.error(`Command ${this.name} failed with error: ${err}`);
+          console.error(`Command ${this.name} failed with error: ${err}\n${err.stack}`);
           return ctx.sendMessage('Something went wrong');
         }
       )
