@@ -2,9 +2,9 @@
 
 const Command = require('../class/core/command');
 
-const getMyOwe = async (ctx, db, name) => {
+const getMyOwe = async (ctx, { userCollection }, name) => {
   const tgID = ctx.message.from.id;
-  const user = db.userCollection.getByID(tgID);
+  const user = userCollection.findOneById(tgID);
   return user.owe.get(name);
 };
 

@@ -20,7 +20,7 @@ class Bot {
     });
 
     for (const command of this.commands) {
-      const executor = command.execute.bind({ db: db, ...command });
+      const executor = command.execute.bind({ db, ...command });
       this.client.command(command.name, executor);
       console.log(`Command ${command.name} initialized`);
     }
