@@ -29,6 +29,11 @@ class Entity {
       return result;
     } else return 'This name does not exist.';
   }
+
+  static fromMongo(obj, db) {
+    const entity = new Entity(obj.name, db);
+    return { ...entity, ...obj };
+  }
 }
 
 module.exports = Entity;

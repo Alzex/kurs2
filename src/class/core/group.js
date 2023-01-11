@@ -11,43 +11,53 @@ class Group extends Entity {
     super(name, db, type);
     this.members = [];
     this.ownerId = ownerId;
+    this.collection = new GCollection(db);
+    this.userCollection = new UCollection(db);
   }
 
   async save() {
-    this.collection = new GCollection(this.db);
     const sameName = await this.collection.ifFieldExist(this.name);
     if (sameName) {
       throw new Error('This name is already taken.');
     }
-    await this.collection.create({
+    const result = await this.collection.create({
       name: this.name,
       members: this.members,
       ownerId: this.ownerId
     });
+
+    return Group.fromMongo(result, this.db);
   }
 
-  async addMember(tgID) {
-    if (!this.members.indexOf(tgID)) {
+  addMember(tgID) {
+    if (!this.members.includes(tgID)) {
       this.members.push(tgID);
-      return 'Added new member!';
+      return this.save();
     }
-    return 'This person is already a member!';
+    throw new Error('This member is already in the group.');
   }
 
-  async deleteMember(tgID) {
+  deleteMember(tgID) {
     if (this.members.indexOf(tgID)) {
       this.members.splice(this.members.indexOf(tgID), 1);
-      return 'Member deleted!';
+      return this.save();
     }
-    return 'There is no such member!';
+    throw new Error('There is no such member!');
   }
 
   async splitTheBill(price) {
     const ammount = price / this.members.length;
     for (const tgID in this.members) {
-      const member = await UserCollection.findOneById(tgID);
-      member.changeOwe(ammount);
+      const member = await this.userCollection.findOneById(tgID);
+      await member.changeOwe(ammount);
     }
+  }
+
+  static fromMongo(obj, db) {
+    const group = new Group(obj.name, db, obj.ownerId);
+    group.members = obj.members;
+    group.id = obj._id;
+    return group;
   }
 }
 
