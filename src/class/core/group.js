@@ -9,18 +9,13 @@ class Group extends Entity {
     this.ownerId = ownerId;
   }
 
-  async save(collection, db) {
+  async save(collection) {
     const sameName = await collection.ifFieldExist(this.name);
     if (sameName) {
       throw new Error('This name is already taken.');
     }
-    const result = await collection.create({
-      name: this.name,
-      members: this.members,
-      ownerId: this.ownerId
-    });
-
-    return Group.fromMongo(result, db);
+    await collection.create({ id: this.name, members: this.members,
+      ownerId: this.ownerId });
   }
 
   addMember(tgID) {
@@ -45,18 +40,6 @@ class Group extends Entity {
       const member = await this.userCollection.findOneById(tgID);
       await member.changeOwe(this.name, ammount);
     }
-  }
-
-  static fromMongo(obj, db) {
-    const group = new Group(obj.name, db, obj.ownerId);
-    group.members = obj.members;
-    group.id = obj._id;
-    return group;
-  }
-
-  static fromMongoByName(name, db, collectionName = 'groups') {
-    return db.collection(collectionName).findOne({ name })
-      .then((data) => Group.fromMongo(data, db));
   }
 }
 

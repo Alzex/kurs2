@@ -9,22 +9,24 @@ class User extends Entity {
     this.owe = new Map();
   }
 
-  async save() {
-    const sameName = await this.collection.ifFieldExist(this.name);
+  async save(collection) {
+    const sameName = await collection.ifFieldExist(this.name);
     if (sameName) {
       throw new Error('This name is already taken.');
     }
-    const result = await this.collection.create({
+    const result = await collection.create({
       name: this.name,
       members: this.members,
       ownerId: this.ownerId
     });
 
-    return Group.fromMongo(result, this.db);
+    return User.fromMongo(result, this.db);
   }
+
   async changeOwe(name, ammount) {
     this.owe.set(name, ammount);
   }
+
   async getOwe() {
     return this.owe;
   }
