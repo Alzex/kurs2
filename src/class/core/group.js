@@ -58,8 +58,9 @@ class Group extends Entity {
     return group;
   }
 
-  static fromMongoById(id, db, name = 'groups') {
-    return db.collection(name).findOne({ _id: id });
+  static fromMongoByName(name, db, collectionName = 'groups') {
+    return db.collection(collectionName).findOne({ name })
+      .then((data) => Group.fromMongo(data, db));
   }
 }
 

@@ -1,7 +1,5 @@
 'use strict';
 
-const Entity = require('../core/baseEntity');
-
 class Collection {
   constructor(db, name) {
     this.collection = db.collection(name);
@@ -38,11 +36,6 @@ class Collection {
 
   updateOne(id, data) {
     return this.collection.update({ _id: id }, { $set: data });
-  }
-
-  parseToEntity(obj, type) {
-    const result = new Entity(obj.name, this.collection, type);
-    return { ...result, ...obj };
   }
 }
 
