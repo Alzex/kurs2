@@ -1,41 +1,41 @@
 'use strict';
 
 class Collection {
-  constructor(db, name) {
-    this.collection = db.collection(name);
+  constructor(name) {
+    this.name = name;
   }
 
-  find(params = {}) {
-    return this.collection.find(params)
+  find(collection, params = {}) {
+    return collection.find(params)
       .then((data) => {
         data.toArray();
       });
   }
 
-  findOneById(id) {
-    return this.collection.findOne({ _id: id })
+  findOneById(collection, id) {
+    return collection.findOne({ _id: id })
       .then((data) => this.parseToEntity(data));
   }
 
-  create(data) {
-    return this.collection.insertOne({ _id: data.id, ...data });
+  create(collection, data) {
+    return collection.insertOne({ _id: data.id, ...data });
   }
 
-  delete(data) {
-    return this.collection.remove(data);
+  delete(collection, data) {
+    return collection.remove(data);
   }
 
-  count() {
-    return this.collection.countDocuments();
+  count(collection) {
+    return collection.countDocuments();
   }
 
-  ifFieldExist(field, value) {
-    return this.collection.findOne({ [field]: value })
+  ifFieldExist(collection, field, value) {
+    return collection.findOne({ [field]: value })
       .then((result) => (!!result));
   }
 
-  updateOne(id, data) {
-    return this.collection.update({ _id: id }, { $set: data });
+  updateOne(collection, id, data) {
+    return collection.update({ _id: id }, { $set: data });
   }
 }
 

@@ -3,8 +3,8 @@
 const Collection = require('./collection');
 
 class UserCollection extends Collection {
-  constructor(db, name = 'Users collection') {
-    super(db, name);
+  constructor(name = 'Users collection') {
+    super(name);
   }
 }
 
