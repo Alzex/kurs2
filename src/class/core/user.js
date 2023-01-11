@@ -24,8 +24,9 @@ class User extends Entity {
     });
   }
 
-  async changeOwe(name, ammount) {
-    this.owe.set(name, ammount);
+  async changeOwe(name, amount, collection) {
+    this.owe.set(name, amount);
+    await collection.updateOne(this.id, { owe: this.owe });
   }
 
   async getOwe() {

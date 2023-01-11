@@ -6,15 +6,15 @@ class Collection {
   }
 
   find(params = {}) {
-    return this.collection.find(params)
-      .then((data) => {
-        data.toArray();
-      });
+    return this.collection.find(params).toArray();
   }
 
   findOneById(id) {
-    return this.collection.findOne({ _id: id })
-      .then((data) => this.parseToEntity(data));
+    return this.collection.findOne({ _id: id });
+  }
+
+  findOneByName(name) {
+    return this.collection.findOne({ name });
   }
 
   create(data) {
@@ -35,7 +35,7 @@ class Collection {
   }
 
   updateOne(id, data) {
-    return this.collection.update({ _id: id }, { $set: data });
+    return this.collection.updateOne({ _id: id }, { $set: data });
   }
 }
 
