@@ -1,16 +1,22 @@
 'use strict';
 
+const Entity = require('../core/baseEntity');
+
 class Collection {
   constructor(db, name) {
     this.collection = db.collection(name);
   }
 
   find(params = {}) {
-    return this.collection.find(params).toArray();
+    return this.collection.find(params)
+      .then((data) => {
+        data.toArray();
+      });
   }
 
   findOneById(id) {
-    return this.collection.findOne({ _id: id });
+    return this.collection.findOne({ _id: id })
+      .then((data) => this.parseToEntity(data));
   }
 
   create(data) {
@@ -32,6 +38,11 @@ class Collection {
 
   updateOne(id, data) {
     return this.collection.update({ _id: id }, { $set: data });
+  }
+
+  parseToEntity(obj, type) {
+    const result = new Entity(obj.name, this.collection, type);
+    return { ...result, ...obj };
   }
 }
 

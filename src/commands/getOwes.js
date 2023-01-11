@@ -1,9 +1,10 @@
 'use strict';
 
 const Command = require('../class/core/command');
+const Group = require('../class/core/group');
 
 const getOwes = async (ctx, db, [name]) => {
-  const currentGroup = await db.groupCollection.findByID(name);
+  const currentGroup = ;
   if (ctx.message.from.id === currentGroup.ownerId) {
     const result = [];
     for (const memberID in currentGroup.members) {
