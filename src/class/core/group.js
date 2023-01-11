@@ -3,7 +3,7 @@
 const Entity = require('./baseEntity');
 
 class Group extends Entity {
-  constructor(name, db, ownerId, type = 'Group') {
+  constructor(name, ownerId, type = 'Group') {
     super(name, type);
     this.members = [];
     this.ownerId = ownerId;
