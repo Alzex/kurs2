@@ -3,12 +3,12 @@
 const Collection = require('./collection');
 
 class GroupCollection extends Collection {
-  constructor(name = 'groups') {
-    super(name);
+  constructor(db, name = 'groups') {
+    super(db, name);
   }
 
-  getGroupMembers(collection, groupId) {
-    return collection.findOne({ groupId })
+  getGroupMembers(groupId) {
+    return this.collection.findOne({ groupId })
       .then((group) => group.members);
   }
 }
