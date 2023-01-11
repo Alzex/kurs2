@@ -1,19 +1,15 @@
 'use strict';
 
 const Entity = require('./baseEntity');
-const GCollection = require('../db/groupCollection');
-const UCollection = require('../db/userCollection');
 
 class Group extends Entity {
   constructor(name, db, ownerId, type = 'Group') {
     super(name, type);
     this.members = [];
     this.ownerId = ownerId;
-    this.collection = new GCollection(db);
-    this.userCollection = new UCollection(db);
   }
 
-  async save(collection) {
+  async save(collection, db) {
     const sameName = await collection.ifFieldExist(this.name);
     if (sameName) {
       throw new Error('This name is already taken.');
@@ -24,7 +20,7 @@ class Group extends Entity {
       ownerId: this.ownerId
     });
 
-    return Group.fromMongo(result, this.db);
+    return Group.fromMongo(result, db);
   }
 
   addMember(tgID) {
