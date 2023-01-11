@@ -19,4 +19,4 @@ const register = async (ctx, { userCollection }, [name]) => {
 
 };
 
-module.exports = new Command(register, 'Registers new user', register);
+module.exports = new Command('register', 'Registers new user', register);
