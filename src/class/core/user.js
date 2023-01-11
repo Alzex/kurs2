@@ -11,17 +11,15 @@ class User extends Entity {
   }
 
   async save(collection) {
-    const sameName = await collection.ifFieldExist(this.name);
+    const sameName = await collection.ifFieldExist('name', this.name);
     if (sameName) {
       throw new Error('This name is already taken.');
     }
-    const result = await collection.create({
+    await collection.create({
       name: this.name,
       owe: this.owe,
       id: this.id
     });
-
-    return User.fromMongo(result, this.db);
   }
 
   async changeOwe(name, ammount) {
