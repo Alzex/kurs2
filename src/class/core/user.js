@@ -12,8 +12,10 @@ class User extends Entity {
 
   async save(collection) {
     const sameName = await collection.ifFieldExist('name', this.name);
-    if (sameName) {
-      throw new Error('This name is already taken.');
+    const userExist = await collection.ifFieldExist('_id', this.id);
+    if (sameName || userExist) {
+      throw new Error('This name is already taken ' +
+        'or you\'re already registered.');
     }
     await collection.create({
       name: this.name,
