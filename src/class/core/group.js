@@ -4,8 +4,6 @@ const Entity = require('./baseEntity');
 const GCollection = require('../db/groupCollection');
 const UCollection = require('../db/userCollection');
 
-
-
 class Group extends Entity {
   constructor(name, db, ownerId, type = 'Group') {
     super(name, db, type);
@@ -49,7 +47,7 @@ class Group extends Entity {
     const ammount = price / this.members.length;
     for (const tgID in this.members) {
       const member = await this.userCollection.findOneById(tgID);
-      await member.changeOwe(ammount);
+      await member.changeOwe(this.name, ammount);
     }
   }
 
