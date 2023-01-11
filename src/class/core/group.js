@@ -10,12 +10,15 @@ class Group extends Entity {
   }
 
   async save(collection) {
-    const sameName = await collection.ifFieldExist(this.name);
+    const sameName = await collection.ifFieldExist('name', this.name);
     if (sameName) {
       throw new Error('This name is already taken.');
     }
-    await collection.create({ id: this.name, members: this.members,
-      ownerId: this.ownerId });
+    await collection.create({
+      id: this.name,
+      members: this.members,
+      ownerId: this.ownerId
+    });
   }
 
   addMember(tgID) {
