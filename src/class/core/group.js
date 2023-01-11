@@ -6,19 +6,19 @@ const UCollection = require('../db/userCollection');
 
 class Group extends Entity {
   constructor(name, db, ownerId, type = 'Group') {
-    super(name, db, type);
+    super(name, type);
     this.members = [];
     this.ownerId = ownerId;
     this.collection = new GCollection(db);
     this.userCollection = new UCollection(db);
   }
 
-  async save() {
-    const sameName = await this.collection.ifFieldExist(this.name);
+  async save(collection) {
+    const sameName = await collection.ifFieldExist(this.name);
     if (sameName) {
       throw new Error('This name is already taken.');
     }
-    const result = await this.collection.create({
+    const result = await collection.create({
       name: this.name,
       members: this.members,
       ownerId: this.ownerId

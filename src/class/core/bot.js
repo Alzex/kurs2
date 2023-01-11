@@ -1,12 +1,11 @@
 'use strict';
 
 class Bot {
-  constructor(client, commands, db) {
+  constructor(client, commands) {
     this.client = client;
     this.commands = commands;
-    this.db = db;
   }
-  init() {
+  init(db) {
     const commandList = this.commands.map((commandIn) => ({
       command: commandIn.name,
       description: commandIn.description
@@ -21,7 +20,7 @@ class Bot {
     });
 
     for (const command of this.commands) {
-      const executor = command.execute.bind({ db: this.db, ...command });
+      const executor = command.execute.bind({ db: db, ...command });
       this.client.command(command.name, executor);
       console.log(`Command ${command.name} initialized`);
     }

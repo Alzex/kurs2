@@ -4,7 +4,7 @@ const Collection = require('../db/collection');
 
 class Entity {
 
-  constructor(name, db, type) {
+  constructor(name, type) {
     this.name = name;
     this.type = type;
   }
