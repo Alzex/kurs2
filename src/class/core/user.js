@@ -7,14 +7,14 @@ const UserCollection = new Collection();
 class User extends Entity {
   constructor(name, collection = UserCollection, type = 'User') {
     super(name, collection, type);
-    this.owe = 0;
+    this.owe = new Map();
   }
-  async changeOwe(ammount){
-    this.owe += ammount;
+  async changeOwe(name, ammount) {
+    this.owe.set(name, ammount);
   }
-  async getOwe(){
-      return this.owe;
-    }   
+  async getOwe() {
+    return this.owe;
+  }
 }
 
 module.exports =  User;
