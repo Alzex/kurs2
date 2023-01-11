@@ -1,7 +1,5 @@
 'use strict';
 
-const Collection = require('../db/collection');
-
 class Entity {
 
   constructor(name, type) {
