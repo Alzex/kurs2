@@ -11,7 +11,10 @@ class User extends Entity {
   }
   async changeOwe(ammount){
     this.owe += ammount;
-  }   
+  }
+  async getOwe(){
+      return this.owe;
+    }   
 }
 
 module.exports =  User;
