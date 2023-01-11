@@ -15,7 +15,8 @@ class Group extends Entity {
       throw new Error('This name is already taken.');
     }
     await collection.create({
-      id: this.name,
+      _id: this.name,
+      name: this.name,
       members: this.members,
       ownerId: this.ownerId
     });
