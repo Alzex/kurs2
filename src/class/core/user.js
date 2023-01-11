@@ -4,8 +4,9 @@ const Entity = require('./baseEntity');
 
 
 class User extends Entity {
-  constructor(name, type = 'User') {
+  constructor(name, id, type = 'User') {
     super(name, type);
+    this.id = id;
     this.owe = new Map();
   }
 
@@ -16,8 +17,8 @@ class User extends Entity {
     }
     const result = await collection.create({
       name: this.name,
-      members: this.members,
-      ownerId: this.ownerId
+      owe: this.owe,
+      id: this.id
     });
 
     return User.fromMongo(result, this.db);
