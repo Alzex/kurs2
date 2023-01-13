@@ -3,7 +3,7 @@
 Телеграм бот для менеджмента боргів у групі.
 
 > **Warning**  
-> CURRENTLY IN WIP STATE.
+> CURRENTLY IN WIP STATE
 
 ## Команди
 - `/start` - запуск бота
