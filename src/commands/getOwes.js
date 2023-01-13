@@ -1,14 +1,13 @@
 'use strict';
 
 const Command = require('../class/core/command');
-const Group = require('../class/core/group');
 
-const getOwes = async (ctx, db, [name]) => {
-  const currentGroup = await Group.fromMongoByName(name, db);
+const getOwes = async (ctx, { userCollection, groupCollection }, [name]) => {
+  const currentGroup = await groupCollection.findOneByName(name);
   if (ctx.message.from.id === currentGroup.ownerId) {
     const result = [];
     for (const memberID in currentGroup.members) {
-      const member = db.userCollection.findByID(memberID);
+      const member = userCollection.findByID(memberID);
       const name = member.name;
       const owe = member.owes.get(currentGroup.name);
       result.push({ name, owe });
