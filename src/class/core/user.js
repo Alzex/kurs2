@@ -8,6 +8,7 @@ class User extends Entity {
     super(name, type);
     this.id = id;
     this.owe = new Map();
+    this.groups = [];
   }
 
   async save(collection) {
@@ -32,8 +33,14 @@ class User extends Entity {
   async getOwe() {
     return this.owe;
   }
-  async setOwe(owe){
+  async setOwe(owe) {
     this.owe = owe;
+  }
+  async addGroupToList(groupID) {
+    this.groups.push(groupID);
+  }
+  async getGroups() {
+    return this.groups;
   }
 }
 
