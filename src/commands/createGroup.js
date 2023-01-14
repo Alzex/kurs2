@@ -1,7 +1,7 @@
 const Command = require('../class/core/command');
 const Group = require('../class/core/group');
 
-const createGroup = async (ctx, {groupCollection}, [name]) => {
+const createGroup = async (ctx, { groupCollection }, [name]) => {
   if (!name) {
     await ctx.sendMessage('You must specify a name for the group');
     return;
