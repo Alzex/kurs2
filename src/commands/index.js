@@ -8,6 +8,7 @@ const registerCommand = require('../commands/register');
 const inviteCommand = require('../commands/inviteToGroup');
 const getMyOwe = require('../commands/getMyOwe');
 const getOwes = require('../commands/getOwes');
+const listGroups = require('../commands/listgroups');
 
 module.exports = [
   startCommand,
@@ -17,5 +18,6 @@ module.exports = [
   registerCommand,
   inviteCommand,
   getMyOwe,
-  getOwes
+  getOwes,
+  listGroups
 ];
