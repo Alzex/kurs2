@@ -8,4 +8,4 @@ const start = async (ctx) => {
   { parse_mode: 'HTML' });
 };
 
-module.exports = new Command('start', 'Starts the bot', start);
+module.exports = new Command('start', 'Starts the bot', start, false);

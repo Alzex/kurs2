@@ -2,17 +2,28 @@ const UserCollection = require('../db/userCollection');
 const GroupCollection = require('../db/groupCollection');
 
 class Command {
-  constructor(name, description, executor) {
+  constructor(name, description, executor, requiresAuth = true) {
     this.name = name;
     this.description = description;
     this.executor = executor;
+    this.requiresAuth = requiresAuth;
   }
 
-  execute(ctx) {
-    const args = ctx.message.text.split(' ');
+  async execute(ctx) {
     const userCollection = new UserCollection(this.db);
+
+    const isAuth =
+      this.requiresAuth ? await Command.checkAuth(ctx, userCollection) : true;
+
+    if (!isAuth) {
+      return;
+    }
+
     const groupCollection = new GroupCollection(this.db);
+
+    const args = ctx.message.text.split(' ');
     args.shift();
+
     return this.executor(ctx, { userCollection, groupCollection }, args)
       .catch(
         (err) => {
@@ -25,6 +36,16 @@ class Command {
       .finally(() => {
         console.log(`Command ${this.name} executed`);
       });
+  }
+
+  static async checkAuth(ctx, userCollection) {
+    const userId = ctx.message.from.id;
+    const user = await userCollection.findOneById(userId);
+    if (!user) {
+      await ctx.reply('You are not registered. Use /register to register');
+      return false;
+    }
+    return true;
   }
 }
 
