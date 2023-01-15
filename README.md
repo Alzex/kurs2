@@ -8,17 +8,17 @@
 ## Команди
 - `/start` - запуск бота
 - `/help` - допомога
-- `/createGroup <group_name>` - створення групи
-- `/inviteToGroup <group_name> <user_name>` - запрошення користувача до групи
-- `/leaveGroup <group_name>` - вихід з групи
-- `/deleteGroup <group_name>` - видалення групи
-- `/listGroups` - список груп
-- `/listUsers <group_name>` - список користувачів в групі
-- `/getOwes <group_name>` - список боргів в групі
-- `/addOwe <group_name> <user_name> <amount>` - додати борг
-- `/removeOwe <group_name> <user_name> <amount>` - видалити борг
-- `/clearOwes <group_name>` - очистити список боргів
-- `/getMyOwe <group_name>` - баланс користувача в групі
+- `/create_group <group_name>` - створення групи
+- `/invite_to_group <group_name> <user_name>` - запрошення користувача до групи
+- `/leave_group <group_name>` - вихід з групи
+- `/delete_group <group_name>` - видалення групи
+- `/list_groups` - список груп
+- `/list_gsers <group_name>` - список користувачів в групі
+- `/get_owes <group_name>` - список боргів в групі
+- `/add_owe <group_name> <user_name> <amount>` - додати борг
+- `/remove_owe <group_name> <user_name> <amount>` - видалити борг
+- `/clear_owes <group_name>` - очистити список боргів
+- `/get_my_owe <group_name>` - баланс користувача в групі
 
 ## Вимоги
 
