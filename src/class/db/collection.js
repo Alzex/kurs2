@@ -9,6 +9,10 @@ class Collection {
     return this.collection.find(params).toArray();
   }
 
+  findManyByIds(ids) {
+    return this.collection.find({ _id: { $in: ids } }).toArray();
+  }
+
   findOneById(id) {
     return this.collection.findOne({ _id: id });
   }

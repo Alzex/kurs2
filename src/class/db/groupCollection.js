@@ -11,6 +11,10 @@ class GroupCollection extends Collection {
     return this.collection.findOne({ groupId })
       .then((group) => group.members);
   }
+
+  findByUserId(userId) {
+    return this.collection.find({ members: userId }).toArray();
+  }
 }
 
 module.exports = GroupCollection;

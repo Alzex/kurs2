@@ -12,6 +12,7 @@ const register = async (ctx, { userCollection }, [name]) => {
   try {
     const user = new User(name, userId);
     await user.save(userCollection);
+    await ctx.sendMessage(`You are registered as ${name}!`);
   } catch (err) {
     await ctx.sendMessage(err.message);
   }
