@@ -30,10 +30,10 @@ class Group extends Entity {
     throw new Error('This member is already in the group.');
   }
 
-  async deleteMember(tgID) {
+  async deleteMember(tgID, collection) {
     if (this.members.indexOf(tgID)) {
       this.members.splice(this.members.indexOf(tgID), 1);
-      return this.save();
+      return collection.updateField(this.name, { members: this.members });
     }
     throw new Error('There is no such member!');
   }
