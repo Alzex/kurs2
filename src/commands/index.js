@@ -9,6 +9,7 @@ const inviteCommand = require('../commands/inviteToGroup');
 const getMyOwe = require('../commands/getMyOwe');
 const getOwes = require('../commands/getOwes');
 const listGroups = require('../commands/listgroups');
+const addOwe = require('../commands/addOwe');
 
 module.exports = [
   startCommand,
@@ -19,5 +20,6 @@ module.exports = [
   inviteCommand,
   getMyOwe,
   getOwes,
-  listGroups
+  listGroups,
+  addOwe
 ];

@@ -38,8 +38,8 @@ class Collection {
       .then((result) => (!!result));
   }
 
-  updateField(id, field, value ) { 
-    return this.collection.updateOne({ _id: id }, { [field]: value });
+  updateField(id, field, value) {
+    return this.collection.updateOne({ _id: id }, { $set: { [field]: value } });
   }
 }
 

@@ -9,8 +9,10 @@ const createGroup = async (ctx, { groupCollection }, [name]) => {
   const ownerId = ctx.message.from.id;
   try {
     const group = new Group(name, ownerId);
-    await group.save(groupCollection);
-    await ctx.sendMessage(`Group ${name} created!`);
+    await Promise.all([
+      group.save(groupCollection),
+      ctx.sendMessage(`Group ${name} created!`)
+    ]);
   } catch (err) {
     await ctx.sendMessage(err.message);
   }
