@@ -10,6 +10,7 @@ const createGroup = async (ctx, { groupCollection }, [name]) => {
   try {
     const group = new Group(name, ownerId);
     await group.save(groupCollection);
+    await ctx.sendMessage(`Group ${name} created!`);
   } catch (err) {
     await ctx.sendMessage(err.message);
   }
