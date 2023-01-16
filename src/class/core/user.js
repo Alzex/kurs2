@@ -33,12 +33,19 @@ class User extends Entity {
   async getOwe() {
     return this.owe;
   }
+
   async setOwe(owe) {
     this.owe = owe;
   }
-  async addGroupToList(groupID) {
+
+  async addGroupToList(groupID, collection) {
+    if (!this.groups.includes(groupID)) {
     this.groups.push(groupID);
+    return collection.updateField(this.id, { groups: this.groups });
+  } 
+    throw new Error('This user is alredy the member of this group.');
   }
+
   async getGroups() {
     return this.groups;
   }
