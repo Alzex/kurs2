@@ -1,6 +1,7 @@
 const Command = require('../class/core/command');
 const Group = require('../class/core/group');
 const User = require('../class/core/user');
+
 const inviteToGroup = async (ctx, { groupCollection, userCollection }, [groupName, userName]) => {
   if (!groupName) {
     await ctx.sendMessage('You must specify a group name');
