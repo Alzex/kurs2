@@ -22,15 +22,15 @@ class Group extends Entity {
     });
   }
 
-  addMember(tgID, collection) {
+  async addMember(tgID, collection) {
     if (!this.members.includes(tgID)) {
       this.members.push(tgID);
-      return collection.updateOne(this.name, { members: this.members });
+      return collection.updateField(this.name, { members: this.members });
     }
     throw new Error('This member is already in the group.');
   }
 
-  deleteMember(tgID) {
+  async deleteMember(tgID) {
     if (this.members.indexOf(tgID)) {
       this.members.splice(this.members.indexOf(tgID), 1);
       return this.save();
