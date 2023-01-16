@@ -37,10 +37,11 @@ const addOwe = async (ctx, { userCollection, groupCollection }, [userName, group
     await ctx.sendMessage('Amount must be a number');
     return;
   }
-  debtor.owes.set(group.name, amountInt);
-  await userCollection.
-
-
+  debtor.owe[group.name] =  amountInt;
+  await Promise.all([
+    userCollection.updateField(debtor.id, 'owe', debtor.owe),
+    ctx.sendMessage(`Owe added to ${debtor.name} in group ${group.name}`)
+  ]);
 };
 
 module.exports = new Command('add_owe', 'Adds an owe to a user', addOwe);
