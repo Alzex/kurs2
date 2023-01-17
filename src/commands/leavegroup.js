@@ -11,8 +11,10 @@ const leave = async (ctx, { groupCollection }, [groupName]) => {
   const currentGroup = await groupCollection.findOneByName(groupName);
 
   if (currentGroup.ownerId === userId) {
-    await ctx.sendMessage('You are the owner of this group. You cannot leave it.\n' +
-      'If you want to delete this group, use /delete_group <group_name> command.');
+    await ctx.sendMessage('You are the owner of this group. ' +
+      'You cannot leave it.\n' +
+      'If you want to delete this group, ' +
+      'use /delete_group <group_name> command.');
     return;
   }
 
