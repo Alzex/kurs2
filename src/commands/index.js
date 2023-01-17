@@ -12,6 +12,7 @@ const listGroups = require('../commands/listgroups');
 const addOwe = require('../commands/addOwe');
 const getDebts = require('../commands/getDebts');
 const leave = require('../commands/leaveGroup');
+const help = require('../commands/help');
 
 module.exports = [
   startCommand,
@@ -26,4 +27,5 @@ module.exports = [
   addOwe,
   getDebts,
   leave,
+  help,
 ];
