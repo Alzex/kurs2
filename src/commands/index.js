@@ -13,6 +13,7 @@ const addOwe = require('../commands/addOwe');
 const getDebts = require('../commands/getDebts');
 const leave = require('../commands/leaveGroup');
 const help = require('../commands/help');
+const deleteGroup = require('../commands/deleteGroup');
 
 module.exports = [
   startCommand,
@@ -28,4 +29,5 @@ module.exports = [
   getDebts,
   leave,
   help,
+  deleteGroup,
 ];

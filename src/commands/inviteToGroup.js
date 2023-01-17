@@ -32,13 +32,19 @@ const inviteToGroup = async (ctx, { groupCollection, userCollection }, [groupNam
   const user = new User(userRaw.name, userRaw._id);
 
   if (!group.members.includes(user.id)) {
-    await group.addMember(user.id, groupCollection);
-    await ctx.sendMessage(`User ${user.name} was added to the group ${group.name}`);
-    await user.changeOwe(group.name, 0, userCollection);
+    await Promise.all([
+      group.addMember(user.id, groupCollection),
+      ctx.sendMessage(`User ${user.name} was added to the group ${group.name}`),
+      user.changeOwe(group.name, 0, userCollection)
+    ]);
     try {
-      await ctx.telegram.sendMessage(user.id, `You were added to the group ${group.name}`);
+      await ctx.telegram.sendMessage(user.id,
+        `You were added to the group ${group.name}
+        `);
     } catch (err) {
-      await ctx.sendMessage('User is not in the bot chat or has blocked the bot');
+      await ctx.sendMessage(
+        'User is not in the bot chat or has blocked the bot' +
+        '');
     }
   } else {
     await ctx.sendMessage('This user is already in the group!');

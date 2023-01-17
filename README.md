@@ -16,8 +16,6 @@
 - `/list_gsers <group_name>` - список користувачів в групі
 - `/get_owes <group_name>` - список боргів в групі
 - `/add_owe <group_name> <user_name> <amount>` - додати борг
-- `/remove_owe <group_name> <user_name> <amount>` - видалити борг
-- `/clear_owes <group_name>` - очистити список боргів
 - `/get_my_owe <group_name>` - баланс користувача в групі
 
 ## Вимоги
