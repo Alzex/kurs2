@@ -25,7 +25,7 @@ class Group extends Entity {
   addMember(tgID, collection) {
     if (!this.members.includes(tgID)) {
       this.members.push(tgID);
-      return collection.updateOne(this.name, { members: this.members });
+      return collection.updateField(this.name, 'members', this.members);
     }
     throw new Error('This member is already in the group.');
   }
