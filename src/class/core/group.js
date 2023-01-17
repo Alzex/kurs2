@@ -22,18 +22,18 @@ class Group extends Entity {
     });
   }
 
-  async addMember(tgID, collection) {
+  addMember(tgID, collection) {
     if (!this.members.includes(tgID)) {
       this.members.push(tgID);
-      return collection.updateField(this.name, { members: this.members });
+      return collection.updateField(this.name, 'members', this.members);
     }
     throw new Error('This member is already in the group.');
   }
 
-  async deleteMember(tgID, collection) {
+  deleteMember(tgID) {
     if (this.members.indexOf(tgID)) {
       this.members.splice(this.members.indexOf(tgID), 1);
-      return collection.updateField(this.name, { members: this.members });
+      return this.save();
     }
     throw new Error('There is no such member!');
   }

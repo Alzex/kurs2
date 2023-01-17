@@ -27,25 +27,18 @@ class User extends Entity {
 
   async changeOwe(name, amount, collection) {
     this.owe.set(name, amount);
-    await collection.updateField(this.id, { owe: this.owe });
+    await collection.updateField(this.id, 'owe', this.owe);
   }
 
   async getOwe() {
     return this.owe;
   }
-
   async setOwe(owe) {
     this.owe = owe;
   }
-
-  async addGroupToList(groupID, collection) {
-    if (!this.groups.includes(groupID)) {
+  async addGroupToList(groupID) {
     this.groups.push(groupID);
-    return collection.updateField(this.id, { groups: this.groups });
-  } 
-    throw new Error('This user is alredy the member of this group.');
   }
-
   async getGroups() {
     return this.groups;
   }
